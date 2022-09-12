@@ -1,4 +1,6 @@
+package Librery;
 import java.io.FileNotFoundException;
+import java.util.Objects;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,7 +9,6 @@ import java.io.IOException;
 public class Main{
     String Book_name;
     String Writter_name;
-    String  book_count;
     String qntt;
     public int get_last_id(){
         String id;
@@ -31,6 +32,7 @@ public class Main{
                     checkAndHOld = Integer.parseInt(id);
                 }
             }
+            rdf.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -66,7 +68,7 @@ public class Main{
 
 
 
-    void rent(){
+   void rent(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Book Rental System__");
         System.out.print("Enter Book Name: ");
@@ -97,7 +99,7 @@ public class Main{
     public void  admin(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Admin Menu__");
-        System.out.println("1.Add Book\n2.All Books \nChoose:");
+        System.out.println("1.Add Book\n2.All Books \n3.Edit \n4.remove \nChoose:");
         int c = inpu.nextInt();
         switch (c){
             case 1:
@@ -105,6 +107,16 @@ public class Main{
                 break;
             case 2:
                 Display_all_book();
+                break;
+            case 3:
+                System.out.print("Book Name:  ");
+                String cc = inpu.nextLine();
+                edit(cc);
+                break;
+            case 4:
+                System.out.print("Book Name:  ");
+                String cck = inpu.nextLine();
+                remove_itm(cck);
                 break;
             default:
                 System.out.println("WOOOW!! WOOOW!! Select Valid");
@@ -121,12 +133,12 @@ public class Main{
         Writter_name = inpu.nextLine();
         System.out.print("Add Book quantities: ");
         qntt = inpu.nextLine();
-        writter(Integer.toString(get_last_id() + 1),Book_name,Writter_name,qntt,"person.txt");
+        writter(Integer.toString(get_last_id() + 1),Book_name,Writter_name,qntt, "person.txt");
         inpu.close();
     }
 
     void Display_all_book() {
-        File rf = new File("person.txt");
+        File rf = new File("Librery/person.txt");
         System.out.println("ID     Name        Quantities  ");
         try {
             Scanner rdf = new Scanner(rf);
@@ -149,7 +161,6 @@ public class Main{
             FileWriter myWriter = new FileWriter(FIlename, true);
             myWriter.write(id + " " + BName + " " + w + " " + q + "\n");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -158,45 +169,82 @@ public class Main{
 
 
     public void edit(String name){
-        Scanner edito = new Scanner(System.in);
+      
+  
         try{
-            //file khullam
-            File tempfile = new File("temp.txt");
-            tempfile.createNewFile();
-
-            //main file theka data
-
+            Scanner edito = new Scanner(System.in);
+            // File tempfile = new File("temp.txt");
+            // tempfile.createNewFile();
             File mainfile = new File("person.txt");
             Scanner temprint = new Scanner(mainfile);
             while(temprint.hasNext()){
-                String id = edito.nextLine();
-                Book_name = edito.nextLine();
-                Writter_name = edito.nextLine();
-                String qntt = edito.nextLine();
-                if(name == Book_name){
-                    String nm = edito.nextLine();
-                    writter(id,Book_name, Writter_name, qntt, "temp.txt");
-                }
+                String id = temprint.next();
+                Book_name = temprint.next();
+                Writter_name =  temprint.next();
+                String qntt =  temprint.next();
+                if(Objects.equals(name, Book_name)){
+                   System.out.print("Enter Name: ");
+                   String nm = edito.nextLine();
+                   System.out.print("Enter Writter Name: ");
+                   String wn = edito.nextLine();
+                   System.out.print("Enter Quentities: ");
+                   String qnty = edito.nextLine();
+                   writter(id,nm, wn, qnty, "temp.txt");
+                   continue;
 
+                }
                 writter(id,Book_name, Writter_name, qntt, "temp.txt");
             }
+                temprint.close();
+                edito.close();
+                mainfile.delete();
+                File rf = new File("temp.txt");
+                File nf = new File("person.txt");
+                rf.renameTo(nf);
 
+        
+            }catch (IOException e) {
+              e.printStackTrace();
+            }}
+
+
+    void remove_itm(String Name){
+
+        try{
+            Scanner edito = new Scanner(System.in);
+            // File tempfile = new File("temp.txt");
+            // tempfile.createNewFile();
+            File mainfile = new File("person.txt");
+            Scanner temprint = new Scanner(mainfile);
+            while(temprint.hasNext()){
+                String id = temprint.next();
+                Book_name = temprint.next();
+                Writter_name =  temprint.next();
+                String qntt =  temprint.next();
+                if(Objects.equals(Name, Book_name)){
+                         continue;
+                }
+                writter(id,Book_name, Writter_name, qntt, "temp.txt");
+            }
+            temprint.close();
+            edito.close();
+            mainfile.delete();
+            File rf = new File("temp.txt");
+            File nf = new File("person.txt");
+            rf.renameTo(nf);
 
 
         }catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
-        }
-    }
+        }}
+
 
 
 
     public static void main(String[] args){
 
         Main main = new Main();
-
-
-
+        main.menu();
 
 
     }

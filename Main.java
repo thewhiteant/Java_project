@@ -1,6 +1,4 @@
 import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
-import java.util.Date;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +7,7 @@ import java.io.IOException;
 public class Main{
     String Book_name;
     String Writter_name;
-    int book_count;
+    String  book_count;
     String qntt;
   public int get_last_id(){
         String id;
@@ -17,6 +15,8 @@ public class Main{
         String NameW;
         String Dat;
         File rf = new File("person.txt");
+        
+
         int checkAndHOld = 0;
         try {
 
@@ -121,22 +121,20 @@ public class Main{
         Writter_name = inpu.nextLine();
         System.out.print("Add Book quantities: ");
         qntt = inpu.nextLine();
-        writter(get_last_id() + 1,Book_name,Writter_name,qntt);
+        writter(get_last_id() + 1,Book_name,Writter_name,qntt,"person.txt");
         inpu.close();
     }
 
-
-
-    void Display_all_book(){
+    void Display_all_book() {
         File rf = new File("person.txt");
         System.out.println("ID     Name        Quantities  ");
         try {
             Scanner rdf = new Scanner(rf);
             while (rdf.hasNext()) {
-               String  id = rdf.next();
+                String id = rdf.next();
                 Book_name = rdf.next();
                 Writter_name = rdf.next();
-                String  Date = rdf.next();
+                String Date = rdf.next();
                 System.out.println(id + "      " + Book_name + "        " + Date);
 
             }
@@ -146,25 +144,63 @@ public class Main{
         }
     }
 
-
-    public void writter(int id, String BName,String w, String q){
+    public void writter(String id, String BName, String w, String q,String FIlename) {
         try {
-            FileWriter myWriter = new FileWriter("person.txt",true);
-            myWriter.write(id+" "+BName+" "+w+" "+ q +"\n");
+            FileWriter myWriter = new FileWriter(FIlename, true);
+            myWriter.write(id + " " + BName + " " + w + " " + q + "\n");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }}
+        }
+    }
+
+
+    public void edit(String iden){
+       Scanner edito = new Scanner(System.in);
+        try{
+            //file khullam
+            File tempfile = new File("temp.txt");
+            tempfile.createNewFile();
+            
+            //main file theka data 
+            
+            File mainfile = new File("person.txt");
+            Scanner temprint = new Scanner(mainfile); 
+            while(temprint.hasNext()){
+                String id = edito.nextLine();
+                Book_name = edito.nextLine();
+                Writter_name = edito.nextLine();
+                String qntt = edito.nextLine();
+
+
+                
+
+
+            }
+            
+            writter(id,Book_name, Writter_name, qntt, "person.txt");
+
+        }catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    
+
 
 
     public static void main(String[] args){
 
     Main main = new Main();
-        main.menu();
+    
 
 
 
   }
 }
+
+
+
+

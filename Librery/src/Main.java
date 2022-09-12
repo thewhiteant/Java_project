@@ -9,13 +9,13 @@ public class Main{
     String Writter_name;
     String  book_count;
     String qntt;
-  public int get_last_id(){
+    public int get_last_id(){
         String id;
         String bKname;
         String NameW;
         String Dat;
         File rf = new File("person.txt");
-        
+
 
         int checkAndHOld = 0;
         try {
@@ -39,79 +39,79 @@ public class Main{
         return  checkAndHOld;
 
     }
-     void menu(){
-         Scanner inpu = new Scanner(System.in);
-         System.out.print("1.Rent Book\n2.Back Book\n3.Admin\nChoose: ");
+    void menu(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.print("1.Rent Book\n2.Back Book\n3.Admin\nChoose: ");
 
-         int c = inpu.nextInt();
-         switch (c) {
-             case 1:
-                 rent();
-                 break;
-             case 2:
-                 back();
-                 break;
-             case 3:
-                 admin();
-                 break;
-             default:
-                 System.out.println("Please Select Valid Option");
-                 break;
-         }
-
-        
-
-         inpu.close();
-     }
-    
-
-
-     void rent(){
-         Scanner inpu = new Scanner(System.in);
-         System.out.println("__Book Rental System__");
-         System.out.print("Enter Book Name: ");
-         Book_name = inpu.nextLine();
-         System.out.println("your Name: ");
-         String Name = inpu.nextLine();
-         System.out.println("Back Date: ");
-         String d = inpu.nextLine();
-         System.out.println("Book Name   Name   BackDate");
-         System.out.println(Book_name + " " + Name + " " + d);
-         inpu.close();
-     }
-
-
-    public void back(){
-            Scanner inpu = new Scanner(System.in);
-            System.out.println("__Book Rental System__");
-            System.out.print("Enter Book Name: ");
-            Book_name = inpu.nextLine();
-            System.out.println("your Name: ");
-            String Name = inpu.nextLine();
-            System.out.println("Book Backed Thank you");
-            inpu.close();
+        int c = inpu.nextInt();
+        switch (c) {
+            case 1:
+                rent();
+                break;
+            case 2:
+                back();
+                break;
+            case 3:
+                admin();
+                break;
+            default:
+                System.out.println("Please Select Valid Option");
+                break;
         }
 
 
 
-     public void  admin(){
-         Scanner inpu = new Scanner(System.in);
-         System.out.println("__Admin Menu__");
-         System.out.println("1.Add Book\n2.All Books \nChoose:");
-         int c = inpu.nextInt();
-         switch (c){
-             case 1:
-                 Add_book();
-                 break;
-             case 2:
-                 Display_all_book();
-                 break;
-             default:
-                 System.out.println("WOOOW!! WOOOW!! Select Valid");
-                 break;
-         }
-         inpu.close();
-     }
+        inpu.close();
+    }
+
+
+
+    void rent(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Book Rental System__");
+        System.out.print("Enter Book Name: ");
+        Book_name = inpu.nextLine();
+        System.out.println("your Name: ");
+        String Name = inpu.nextLine();
+        System.out.println("Back Date: ");
+        String d = inpu.nextLine();
+        System.out.println("Book Name   Name   BackDate");
+        System.out.println(Book_name + " " + Name + " " + d);
+        inpu.close();
+    }
+
+
+    public void back(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Book Rental System__");
+        System.out.print("Enter Book Name: ");
+        Book_name = inpu.nextLine();
+        System.out.println("your Name: ");
+        String Name = inpu.nextLine();
+        System.out.println("Book Backed Thank you");
+        inpu.close();
+    }
+
+
+
+    public void  admin(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Admin Menu__");
+        System.out.println("1.Add Book\n2.All Books \nChoose:");
+        int c = inpu.nextInt();
+        switch (c){
+            case 1:
+                Add_book();
+                break;
+            case 2:
+                Display_all_book();
+                break;
+            default:
+                System.out.println("WOOOW!! WOOOW!! Select Valid");
+                break;
+        }
+        inpu.close();
+    }
     public void Add_book(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Book Rental System__");
@@ -121,7 +121,7 @@ public class Main{
         Writter_name = inpu.nextLine();
         System.out.print("Add Book quantities: ");
         qntt = inpu.nextLine();
-        writter(get_last_id() + 1,Book_name,Writter_name,qntt,"person.txt");
+        writter(Integer.toString(get_last_id() + 1),Book_name,Writter_name,qntt,"person.txt");
         inpu.close();
     }
 
@@ -157,48 +157,49 @@ public class Main{
     }
 
 
-    public void edit(String iden){
-       Scanner edito = new Scanner(System.in);
+    public void edit(String name){
+        Scanner edito = new Scanner(System.in);
         try{
             //file khullam
             File tempfile = new File("temp.txt");
             tempfile.createNewFile();
-            
-            //main file theka data 
-            
+
+            //main file theka data
+
             File mainfile = new File("person.txt");
-            Scanner temprint = new Scanner(mainfile); 
+            Scanner temprint = new Scanner(mainfile);
             while(temprint.hasNext()){
                 String id = edito.nextLine();
                 Book_name = edito.nextLine();
                 Writter_name = edito.nextLine();
                 String qntt = edito.nextLine();
+                if(name == Book_name){
+                    String nm = edito.nextLine();
+                    writter(id,Book_name, Writter_name, qntt, "temp.txt");
+                }
 
-
-                
-
-
+                writter(id,Book_name, Writter_name, qntt, "temp.txt");
             }
-            
-            writter(id,Book_name, Writter_name, qntt, "person.txt");
+
+
 
         }catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
-    
 
 
 
     public static void main(String[] args){
 
-    Main main = new Main();
-    
+        Main main = new Main();
 
 
 
-  }
+
+
+    }
 }
 
 

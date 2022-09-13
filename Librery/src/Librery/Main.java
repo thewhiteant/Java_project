@@ -10,6 +10,10 @@ public class Main{
     String Book_name;
     String Writter_name;
     String qntt;
+        
+    File test = new File("person.txt");
+    if()
+
     public int get_last_id(){
         String id;
         String bKname;
@@ -68,38 +72,11 @@ public class Main{
 
 
 
-   void rent(){
-        Scanner inpu = new Scanner(System.in);
-        System.out.println("__Book Rental System__");
-        System.out.print("Enter Book Name: ");
-        Book_name = inpu.nextLine();
-        System.out.println("your Name: ");
-        String Name = inpu.nextLine();
-        System.out.println("Back Date: ");
-        String d = inpu.nextLine();
-        System.out.println("Book Name   Name   BackDate");
-        System.out.println(Book_name + " " + Name + " " + d);
-        inpu.close();
-    }
-
-
-    public void back(){
-        Scanner inpu = new Scanner(System.in);
-        System.out.println("__Book Rental System__");
-        System.out.print("Enter Book Name: ");
-        Book_name = inpu.nextLine();
-        System.out.println("your Name: ");
-        String Name = inpu.nextLine();
-        System.out.println("Book Backed Thank you");
-        inpu.close();
-    }
-
-
 
     public void  admin(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Admin Menu__");
-        System.out.println("1.Add Book\n2.All Books \n3.Edit \n4.remove \nChoose:");
+        System.out.print("1.Add Book\n2.All Books \n3.Edit \n4.remove \nChoose:");
         int c = inpu.nextInt();
         switch (c){
             case 1:
@@ -138,7 +115,7 @@ public class Main{
     }
 
     void Display_all_book() {
-        File rf = new File("Librery/person.txt");
+        File rf = new File("person.txt");
         System.out.println("ID     Name        Quantities  ");
         try {
             Scanner rdf = new Scanner(rf);
@@ -237,6 +214,33 @@ public class Main{
         }catch (IOException e) {
             e.printStackTrace();
         }}
+
+
+    void rent(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Book Rental System__");
+        System.out.print("Enter Book Name: ");
+        Book_name = inpu.nextLine();
+        System.out.println("your Name: ");
+        String Name = inpu.nextLine();
+        System.out.println("Back Date: ");
+        String d = inpu.nextLine();
+        System.out.println("Book Name   Name   BackDate");
+        System.out.println(Book_name + " " + Name + " " + d);
+        inpu.close();
+    }
+
+
+    public void back(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Book Rental System__");
+        System.out.print("Enter Book Name: ");
+        Book_name = inpu.nextLine();
+        System.out.println("your Name: ");
+        String Name = inpu.nextLine();
+        System.out.println("Book Backed Thank you");
+        inpu.close();
+    }
 
 
 

@@ -1,5 +1,6 @@
 package Librery;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.File;
@@ -255,21 +256,16 @@ public class Main{
         System.out.println("__Member Option__");
         System.out.print("1.Add Membr\n2.Remove member\n3.Edit Member\4.Renew Membership\nchoise: ");
         int c = inpu.nextInt();
-        switch (c){
+        switch (c) {
             case 1:
                 add_member();
                 break;
             case 2:
-                remove_mem();
-                break;
-            case 3:
-                edit_mem();
-                break;
-            case 4:
-                renew();
+                System.out.print("Enter The Username: ");
+                String name = inpu.nextLine();
+                remove_mem(name);
                 break;
         }
-
     }
 
     public int get_member_id(){
@@ -329,7 +325,7 @@ public class Main{
 
 
     }
-    public void remove_mem(String name) throws FileNotFoundException {
+    public void remove_mem(String name) {
         try {
         Scanner edito = new Scanner(System.in);
         File mainfile = new File("member.txt");
@@ -361,34 +357,18 @@ public class Main{
         File nf = new File("member.txt");
         rf.renameTo(nf);
 
+        
 
     }catch (IOException e) {
         e.printStackTrace();
-    }}
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     }
-    public void edit_mem(){
 
-    }
-    public void renew(){
-
-    }
     public static void main(String[] args){
 
         Main main = new Main();
-        main.add_member();
+        main.menu();
 
 
     }

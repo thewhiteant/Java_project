@@ -10,9 +10,11 @@ public class Main{
     String Book_name;
     String Writter_name;
     String qntt;
-        
-    File test = new File("person.txt");
-    if()
+    String usr;
+    String Phone;
+
+
+
 
     public int get_last_id(){
         String id;
@@ -76,7 +78,7 @@ public class Main{
     public void  admin(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Admin Menu__");
-        System.out.print("1.Add Book\n2.All Books \n3.Edit \n4.remove \nChoose:");
+        System.out.print("1.Add Book\n2.All Books \n3.Edit \n4.remove \n5.Member\nChoose:");
         int c = inpu.nextInt();
         switch (c){
             case 1:
@@ -94,6 +96,9 @@ public class Main{
                 System.out.print("Book Name:  ");
                 String cck = inpu.nextLine();
                 remove_itm(cck);
+                break;
+            case 5:
+                Member();
                 break;
             default:
                 System.out.println("WOOOW!! WOOOW!! Select Valid");
@@ -216,6 +221,7 @@ public class Main{
         }}
 
 
+
     void rent(){
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Book Rental System__");
@@ -231,7 +237,7 @@ public class Main{
     }
 
 
-    public void back(){
+    public void back() {
         Scanner inpu = new Scanner(System.in);
         System.out.println("__Book Rental System__");
         System.out.print("Enter Book Name: ");
@@ -242,13 +248,147 @@ public class Main{
         inpu.close();
     }
 
+    
+
+    public  void Member(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Member Option__");
+        System.out.print("1.Add Membr\n2.Remove member\n3.Edit Member\4.Renew Membership\nchoise: ");
+        int c = inpu.nextInt();
+        switch (c){
+            case 1:
+                add_member();
+                break;
+            case 2:
+                remove_mem();
+                break;
+            case 3:
+                edit_mem();
+                break;
+            case 4:
+                renew();
+                break;
+        }
+
+    }
+
+    public int get_member_id(){
+        String id;
+        String bKname;
+        String NameW;
+        String Dat;
+        File rf = new File("member.txt");
+
+
+        int checkAndHOld = 0;
+        try {
+
+            Scanner rdf = new Scanner(rf);
+            while (rdf.hasNext()) {
+                id = rdf.next();
+                usr = rdf.next();
+                Phone = rdf.next();
+                Dat = rdf.next();
+
+                if(checkAndHOld < Integer.parseInt(id) ){
+                    checkAndHOld = Integer.parseInt(id);
+                }
+            }
+            rdf.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return  checkAndHOld;
+
+    }
 
 
 
+    public  void add_member(){
+        Scanner inpu = new Scanner(System.in);
+        System.out.println("__Member Adding __");
+        System.out.print("Enter Name: ");
+        usr = inpu.nextLine();
+        System.out.print("your Phone Number: ");
+        Phone = inpu.nextLine();
+        System.out.print("your data: ");
+        String date = inpu.nextLine();
+        System.out.println("Added Successfully");
+        try {
+            FileWriter myWriter = new FileWriter("member.txt", true);
+            myWriter.write( (get_member_id() + 1)+ " " + usr + " " + Phone + " " + date + "\n");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        inpu.close();
+
+
+
+    }
+    public void remove_mem(String name) throws FileNotFoundException {
+        try {
+        Scanner edito = new Scanner(System.in);
+        File mainfile = new File("member.txt");
+        FileWriter myWriter = new FileWriter("member.txt", true);
+        Scanner temprint = new Scanner(mainfile);
+        while(temprint.hasNext()){
+            String id = temprint.next();
+            usr = temprint.next();
+            Phone =  temprint.next();
+            String date =  temprint.next();
+
+            if(Objects.equals(name, usr)){
+                System.out.print("Enter Name: ");
+                String nm = edito.nextLine();
+                System.out.print("Enter Phone: ");
+                String phn = edito.nextLine();
+                System.out.print("Edit Date: ");
+                String dat = edito.nextLine();
+                myWriter.write( id + " " + nm + " " + phn + " " + dat + "\n");
+                continue;
+            }
+                myWriter.write( id + " " + usr + " " + Phone + " " + date + "\n");
+        }
+        myWriter.close();
+        temprint.close();
+        edito.close();
+        mainfile.delete();
+        File rf = new File("temp.txt");
+        File nf = new File("member.txt");
+        rf.renameTo(nf);
+
+
+    }catch (IOException e) {
+        e.printStackTrace();
+    }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    public void edit_mem(){
+
+    }
+    public void renew(){
+
+    }
     public static void main(String[] args){
 
         Main main = new Main();
-        main.menu();
+        main.add_member();
 
 
     }

@@ -1,0 +1,60 @@
+{
+    "_default": {
+        "1": {
+            "name": "World History",
+            "auth": "Kama L.",
+            "price": "100",
+            "type": "GK",
+            "qntt": 0
+        },
+        "2": {
+            "name": "Ok",
+            "auth": "das",
+            "price": "dsa",
+            "type": "das",
+            "qntt": 0
+        },
+        "3": {
+            "name": "fdsa",
+            "auth": "asfafs",
+            "price": "fsaf",
+            "type": "fsaase",
+            "qntt": 10
+        },
+        "4": {
+            "name": "saedad",
+            "auth": "sa",
+            "price": "54",
+            "type": "",
+            "qntt": 0
+        },
+        "5": {
+            "name": "dsad45asd",
+            "auth": "asdsd",
+            "price": "d51ads",
+            "type": "154da",
+            "qntt": 100
+        },
+        "6": {
+            "name": "sdae",
+            "auth": "dawda",
+            "price": "100",
+            "type": "we",
+            "qntt": 11
+        },
+        "7": {
+            "name": "PHJCn uiegbfsdv",
+            "auth": "fkhdsljk",
+            "price": "100",
+            "type": "fsdouhbsd",
+            "qntt": 10
+        },
+        "8": {
+            "name": "Deep Learning",
+            "auth": "Lan Goodfellow",
+            "price": "1200",
+            "type": "Programming",
+            "qntt": 0
+        }
+    }
+}

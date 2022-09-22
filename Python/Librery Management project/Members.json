@@ -1,0 +1,47 @@
+{
+    "_default": {
+        "1": {
+            "name": "Abdul KOrim mollah",
+            "address": "FNhisda",
+            "phone": "1234567891",
+            "haveB": "no",
+            "total": 0,
+            "fav": "none"
+        },
+        "2": {
+            "name": "Kakoli kala ken",
+            "address": "sdaf",
+            "phone": "1234567891",
+            "haveB": "world Word X",
+            "total": 0,
+            "fav": "none"
+        },
+        "3": {
+            "name": "dafsa",
+            "address": "fasafgqw",
+            "phone": "1234567890",
+            "haveB": "Lows",
+            "total": 0,
+            "fav": "none"
+        },
+        "4": {
+            "name": "Yusuf Abuilla",
+            "address": "ksdfuiofssdg",
+            "phone": "8881212012",
+            "haveB": null,
+            "total": 1,
+            "fav": "none"
+        },
+        "5": {
+            "name": "Rafi",
+            "address": "148/7",
+            "phone": "1712373025",
+            "haveB": "Deep Learning",
+            "total": 1,
+            "fav": "none"
+        },
+        "6": {
+
+        }
+    }
+}
